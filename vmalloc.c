@@ -12,7 +12,7 @@ void *vmalloc(size_t size)
     struct block_header* best = NULL;
 	size_t best_size = SIZE_MAX;
 
-	while(get_block_size(curr) != 0) {
+	while(curr->size_status != VM_ENDMARK) {
      if(get_curr_status(curr) == 0) {
       size_t curr_size = get_block_size(curr);
 	  if(curr_size >= required_size && curr_size < best_size) {
@@ -38,7 +38,7 @@ void *vmalloc(size_t size)
 	}
 	else {
 	 struct block_header* next = next_block_addr(best);
-	 next->size_status |= 0x2;
+	 if(next->size_status != VM_ENDMARK) { next->size_status |= 0x2; }
 	}
 
 	best->size_status |= 0x1;

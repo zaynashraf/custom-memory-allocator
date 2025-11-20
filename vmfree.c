@@ -24,7 +24,7 @@ void vmfree(void *ptr)
 	footer->size = block_size;
 
 	struct block_header* next = next_block_addr(block);
-	if(get_curr_status(next) == 0) {
+	if(get_curr_status(next) == 0 && next->size_status != VM_ENDMARK) {
      size_t new_size = block_size + get_block_size(next);
 	 block->size_status = new_size | (block->size_status & 0x2);
 	 struct block_footer* new_footer = (struct block_footer*)((char*)block + new_size - sizeof(struct block_footer));
@@ -45,5 +45,5 @@ void vmfree(void *ptr)
 	}
 
 	struct block_header* next_block = next_block_addr(block);
-	next_block->size_status &= ~0x2;
+	if(next_block->size_status != VM_ENDMARK) { next_block->size_status &= ~0x2; }
 }
