@@ -19,7 +19,7 @@ int main()
 {
     vmload("img/many_free.img");
 
-    // vminfo(); /* uncomment this to see the contents of the image. */
+    vminfo(); /* uncomment this to see the contents of the image. */
 
     void *ptr = vmalloc(35);  /* this should look for a 48-byte block. */
     struct block_header *hdr = (struct block_header *)
