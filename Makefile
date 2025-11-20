@@ -6,7 +6,7 @@ CFLAGS = -I. -O0 -g -Werror=vla
 LIBSO = libvm.so
 TARGET = vmtest
 # Constituent object files
-OBJS = vminit.o vmalloc.o vmfree.o utils.o
+OBJS = vminit.o vmalloc.o vmfree.o utils.o vmhelpers.o
 OBJTEST = vmtest.o
 
 # Default Make recipe

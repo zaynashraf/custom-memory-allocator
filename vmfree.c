@@ -1,27 +1,8 @@
+#include "vmhelpers.h"
 #include "vm.h"
 #include "vmlib.h"
 
-size_t get_curr_status(struct block_header* block) {
-     if((block->size_status & 1) == 1) { return 1; }
-     return 0;
-}
 
-size_t get_prev_status(struct block_header* block) {
-      if((block->size_status & 0x2) == 2) { return 1; }
-      return 0;
-}
-
-size_t get_block_size(struct block_header* block) {
-   size_t size = block->size_status & ~0xF;
-  
-   return size;
-}
-
-struct block_header* next_block_addr(struct block_header* start) {
-        size_t size = get_block_size(start);
-        struct block_header* ptr = (struct block_header*)((char*)start + size);
-        return ptr;
-}
 /**
  * The vmfree() function frees the memory space pointed to by ptr,
  * which must have been returned by a previous call to vmmalloc().
