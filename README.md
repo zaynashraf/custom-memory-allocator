@@ -1,7 +1,5 @@
 # Custom Memory Allocator
 
-**Implementation of a dynamic memory allocator in C with best-fit allocation, block splitting, and coalescing.**
-
 ---
 
 ## Overview
